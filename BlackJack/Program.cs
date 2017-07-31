@@ -104,7 +104,7 @@ namespace BlackJack
                             Console.WriteLine(card.Value + " of " + card.Suit/* + " " + card.IsDealt*/);
                         }
                         Console.WriteLine(Dealer.GetPoints());
-                        if (Dealer.GetPoints() == 21 & Dima.GetPoints() == 21)
+                        if (Dealer.GetPoints() == Dima.GetPoints())
                         {
                             Console.WriteLine("1:1 Draw");
                         }
