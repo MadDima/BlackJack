@@ -8,7 +8,7 @@ namespace BlackJack
 {
 
     public enum Suit { Clubs, Diamonds, Spades, Hearts }
-    public enum Value { Six = 5, Seven = 6, Eight = 7, Nine = 8, Ten = 9, Jack = 10, Queen = 10, King = 10, Aces = 11 }
+    public enum Value { Two = 2, Three = 3, Four = 4, Five = 5, Six = 5, Seven = 6, Eight = 7, Nine = 8, Ten = 9, Jack = 10, Queen = 10, King = 10, Ace = 11 }
 
     struct Card
     {
@@ -19,7 +19,7 @@ namespace BlackJack
 
     class Player
     {
-        public readonly Card[] Pcards = new Card[36];
+        public readonly Card[] Pcards = new Card[52];
         private int CurrentIndex = 0;
         public int GetPoints()
         {
@@ -47,7 +47,11 @@ namespace BlackJack
             Card card;
             Player Dima = new Player();
             Player Dealer = new Player();
-            Console.WriteLine("Cards: Dima");
+
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("Dima");
+            Console.ForegroundColor = ConsoleColor.Gray;
+
             for (int i = 0; i < 2; i++)
             {
                 card = MainDeck.DealCard();
@@ -57,11 +61,11 @@ namespace BlackJack
             Console.WriteLine("Points: " + Dima.GetPoints());
             if (Dima.GetPoints() == 21)
             {
-                Console.WriteLine("Dima Win");
+                Console.WriteLine("Dima Won");
             }
             else if (Dima.GetPoints() > 21)
             {
-                Console.WriteLine("Dima Loose");
+                Console.WriteLine("Dima Lost");
             }
 
             Console.WriteLine("Press 'Enter' to take Card");
@@ -70,7 +74,7 @@ namespace BlackJack
 
             while (!endOfGame)
             {
-                ConsoleKey keyInfo = Console.ReadKey().Key;
+                ConsoleKey keyInfo = Console.ReadKey(true).Key;
                 switch (keyInfo)
                 {
                     case ConsoleKey.Enter:
@@ -80,12 +84,14 @@ namespace BlackJack
                         Console.WriteLine("Points: " + Dima.GetPoints());
                         if (Dima.GetPoints() > 21)
                         {
-                            Console.WriteLine("Dima Loose");
+                            Console.WriteLine("Dima Lose");
                             endOfGame = true;
                         }
                         break;
                     case ConsoleKey.Escape:
+                        Console.ForegroundColor = ConsoleColor.Blue;
                         Console.WriteLine("Dealer");
+                        Console.ForegroundColor = ConsoleColor.Gray;
                         while (Dealer.GetPoints() < 17)
                         {
                             card = DealerDeck.DealCard();
