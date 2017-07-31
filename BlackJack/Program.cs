@@ -87,6 +87,11 @@ namespace BlackJack
                             Console.WriteLine("Dima Lose");
                             endOfGame = true;
                         }
+                        if (Dima.GetPoints() == 21)
+                        {
+                            Console.WriteLine("Dima Won");
+                            endOfGame = true;
+                        }
                         break;
                     case ConsoleKey.Escape:
                         Console.ForegroundColor = ConsoleColor.Blue;
@@ -105,15 +110,15 @@ namespace BlackJack
                         }
                         else if (Dealer.GetPoints() > 21)
                         {
-                            Console.WriteLine("Dima Win");
+                            Console.WriteLine("Dima Won");
                         }
                         else if (Dealer.GetPoints() < Dima.GetPoints())
                         {
-                            Console.WriteLine("Dima Win");
+                            Console.WriteLine("Dima Won");
                         }
                         else if (Dealer.GetPoints() > Dima.GetPoints())
                         {
-                            Console.WriteLine("Dima Loose");
+                            Console.WriteLine("Dima Lose");
                         }
                         endOfGame = true;
                         break;
@@ -123,4 +128,4 @@ namespace BlackJack
         }
 
     }
-}
+}//unfortunately without wh***
