@@ -44,8 +44,8 @@ namespace BlackJack
             Deck mainDeck = new Deck();
             Deck dealerDeck = new Deck();
             Card card;
-            Player Dima = new Player();
-            Player Dealer = new Player();
+            Player dima = new Player();
+            Player dealer = new Player();
 
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("Dima");
@@ -54,15 +54,15 @@ namespace BlackJack
             for (int i = 0; i < 2; i++)
             {
                 card = mainDeck.DealCard();
-                Dima.AddCard(card);
+                dima.AddCard(card);
                 Console.WriteLine(card.Value + " of " + card.Suit);
             }
-            Console.WriteLine("Points: " + Dima.GetPoints());
-            if (Dima.GetPoints() == 21)
+            Console.WriteLine("Points: " + dima.GetPoints());
+            if (dima.GetPoints() == 21)
             {
                 Console.WriteLine("Dima Won");
             }
-            else if (Dima.GetPoints() > 21)
+            else if (dima.GetPoints() > 21)
             {
                 Console.WriteLine("Dima Lost");
             }
@@ -78,15 +78,15 @@ namespace BlackJack
                 {
                     case ConsoleKey.Enter:
                         card = mainDeck.DealCard();
-                        Dima.AddCard(card);
+                        dima.AddCard(card);
                         Console.WriteLine(card.Value + " of " + card.Suit);
-                        Console.WriteLine("Points: " + Dima.GetPoints());
-                        if (Dima.GetPoints() > 21)
+                        Console.WriteLine("Points: " + dima.GetPoints());
+                        if (dima.GetPoints() > 21)
                         {
                             Console.WriteLine("Dima Lose");
                             endOfGame = true;
                         }
-                        if (Dima.GetPoints() == 21)
+                        if (dima.GetPoints() == 21)
                         {
                             Console.WriteLine("Dima Won");
                             endOfGame = true;
@@ -96,26 +96,26 @@ namespace BlackJack
                         Console.ForegroundColor = ConsoleColor.Blue;
                         Console.WriteLine("Dealer");
                         Console.ForegroundColor = ConsoleColor.Gray;
-                        while (Dealer.GetPoints() < 17)
+                        while (dealer.GetPoints() < 17)
                         {
                             card = dealerDeck.DealCard();
-                            Dealer.AddCard(card);
+                            dealer.AddCard(card);
                             Console.WriteLine(card.Value + " of " + card.Suit);
                         }
-                        Console.WriteLine(Dealer.GetPoints());
-                        if (Dealer.GetPoints() == Dima.GetPoints())
+                        Console.WriteLine(dealer.GetPoints());
+                        if (dealer.GetPoints() == dima.GetPoints())
                         {
                             Console.WriteLine("1:1 Draw");
                         }
-                        else if (Dealer.GetPoints() > 21)
+                        else if (dealer.GetPoints() > 21)
                         {
                             Console.WriteLine("Dima Won");
                         }
-                        else if (Dealer.GetPoints() < Dima.GetPoints())
+                        else if (dealer.GetPoints() < dima.GetPoints())
                         {
                             Console.WriteLine("Dima Won");
                         }
-                        else if (Dealer.GetPoints() > Dima.GetPoints())
+                        else if (dealer.GetPoints() > dima.GetPoints())
                         {
                             Console.WriteLine("Dima Lose");
                         }
