@@ -18,10 +18,11 @@ namespace BlackJack
             int index = 0;
             for (int i = 0; i < 4; i++)
             {
+                var yyi = (int[])Enum.GetValues(typeof(Value));
                 for (int j = 0; j < 9; j++)
                 {
                     card.Suit = (Suit)i;
-                    card.Value = (Value)j;
+                    card.Value = (Value)yyi[j];
                     card.IsDealt = false;
                     deck[index] = card;
                     index++;

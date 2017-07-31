@@ -54,6 +54,7 @@ namespace BlackJack
                 Dima.AddCard(card);
                 Console.WriteLine(card.Value + " of " + card.Suit/* + " " + card.IsDealt*/);
             }
+            
             Console.WriteLine("Points: " + Dima.GetPoints());
             if (Dima.GetPoints() == 21)
             {
