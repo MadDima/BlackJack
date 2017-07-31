@@ -41,9 +41,8 @@ namespace BlackJack
     {
         static void Main(string[] args)
         {
-            //ConsoleKeyInfo cki;
-            Deck MainDeck = new Deck();
-            Deck DealerDeck = new Deck();
+            Deck mainDeck = new Deck();
+            Deck dealerDeck = new Deck();
             Card card;
             Player Dima = new Player();
             Player Dealer = new Player();
@@ -54,9 +53,9 @@ namespace BlackJack
 
             for (int i = 0; i < 2; i++)
             {
-                card = MainDeck.DealCard();
+                card = mainDeck.DealCard();
                 Dima.AddCard(card);
-                Console.WriteLine(card.Value + " of " + card.Suit/* + " " + card.IsDealt*/);
+                Console.WriteLine(card.Value + " of " + card.Suit);
             }
             Console.WriteLine("Points: " + Dima.GetPoints());
             if (Dima.GetPoints() == 21)
@@ -78,9 +77,9 @@ namespace BlackJack
                 switch (keyInfo)
                 {
                     case ConsoleKey.Enter:
-                        card = MainDeck.DealCard();
+                        card = mainDeck.DealCard();
                         Dima.AddCard(card);
-                        Console.WriteLine(card.Value + " of " + card.Suit/* + " " + card.IsDealt*/);
+                        Console.WriteLine(card.Value + " of " + card.Suit);
                         Console.WriteLine("Points: " + Dima.GetPoints());
                         if (Dima.GetPoints() > 21)
                         {
@@ -99,9 +98,9 @@ namespace BlackJack
                         Console.ForegroundColor = ConsoleColor.Gray;
                         while (Dealer.GetPoints() < 17)
                         {
-                            card = DealerDeck.DealCard();
+                            card = dealerDeck.DealCard();
                             Dealer.AddCard(card);
-                            Console.WriteLine(card.Value + " of " + card.Suit/* + " " + card.IsDealt*/);
+                            Console.WriteLine(card.Value + " of " + card.Suit);
                         }
                         Console.WriteLine(Dealer.GetPoints());
                         if (Dealer.GetPoints() == Dima.GetPoints())
@@ -128,4 +127,4 @@ namespace BlackJack
         }
 
     }
-}//unfortunately without wh***
+}
