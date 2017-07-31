@@ -54,7 +54,6 @@ namespace BlackJack
                 Dima.AddCard(card);
                 Console.WriteLine(card.Value + " of " + card.Suit/* + " " + card.IsDealt*/);
             }
-            
             Console.WriteLine("Points: " + Dima.GetPoints());
             if (Dima.GetPoints() == 21)
             {
@@ -67,53 +66,54 @@ namespace BlackJack
 
             Console.WriteLine("Press 'Enter' to take Card");
 
-            while (Console.ReadKey().Key == ConsoleKey.Enter)
-            {
-                for (int i = 0; i < 1; i++)
-                {
-                    card = MainDeck.DealCard();
-                    Dima.AddCard(card);
-                    Console.WriteLine(card.Value + " of " + card.Suit/* + " " + card.IsDealt*/);
-                }
-                Console.WriteLine("Points: " + Dima.GetPoints());
-                if (Dima.GetPoints() > 21)
-                {
-                    Console.WriteLine("Dima Loose");
-                    break;
-                }
+            bool endOfGame = false;
 
-                if (Console.ReadKey(true).Key == ConsoleKey.Escape)
+            while (!endOfGame)
+            {
+                ConsoleKey keyInfo = Console.ReadKey().Key;
+                switch (keyInfo)
                 {
-                    Console.WriteLine("Dealer");
-                    while (Dealer.GetPoints() < 17)
-                    {
-                        card = DealerDeck.DealCard();
-                        Dealer.AddCard(card);
+                    case ConsoleKey.Enter:
+                        card = MainDeck.DealCard();
+                        Dima.AddCard(card);
                         Console.WriteLine(card.Value + " of " + card.Suit/* + " " + card.IsDealt*/);
-                    }
-                    Console.WriteLine(Dealer.GetPoints());
-                    if (Dealer.GetPoints() == 21 & Dima.GetPoints() == 21)
-                    {
-                        Console.WriteLine("1:1 Draw");
+                        Console.WriteLine("Points: " + Dima.GetPoints());
+                        if (Dima.GetPoints() > 21)
+                        {
+                            Console.WriteLine("Dima Loose");
+                            endOfGame = true;
+                        }
                         break;
-                    }
-                    else if (Dealer.GetPoints() > 21)
-                    {
-                        Console.WriteLine("Dima Win");
+                    case ConsoleKey.Escape:
+                        Console.WriteLine("Dealer");
+                        while (Dealer.GetPoints() < 17)
+                        {
+                            card = DealerDeck.DealCard();
+                            Dealer.AddCard(card);
+                            Console.WriteLine(card.Value + " of " + card.Suit/* + " " + card.IsDealt*/);
+                        }
+                        Console.WriteLine(Dealer.GetPoints());
+                        if (Dealer.GetPoints() == 21 & Dima.GetPoints() == 21)
+                        {
+                            Console.WriteLine("1:1 Draw");
+                        }
+                        else if (Dealer.GetPoints() > 21)
+                        {
+                            Console.WriteLine("Dima Win");
+                        }
+                        else if (Dealer.GetPoints() < Dima.GetPoints())
+                        {
+                            Console.WriteLine("Dima Win");
+                        }
+                        else if (Dealer.GetPoints() > Dima.GetPoints())
+                        {
+                            Console.WriteLine("Dima Loose");
+                        }
+                        endOfGame = true;
                         break;
-                    }
-                    else if (Dealer.GetPoints() < Dima.GetPoints())
-                    {
-                        Console.WriteLine("Dima Win");
-                        break;
-                    }
-                    else if (Dealer.GetPoints() > Dima.GetPoints())
-                    {
-                        Console.WriteLine("Dima Loose");
-                        break;
-                    }
                 }
             }
+
         }
 
     }
